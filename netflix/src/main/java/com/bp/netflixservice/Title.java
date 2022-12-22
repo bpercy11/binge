@@ -3,6 +3,7 @@ package com.bp.netflixservice;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -12,22 +13,24 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
+@Table(name = "titles")
 public class Title {
     @Id
     @SequenceGenerator(
-            name = "notification_id_sequence",
-            sequenceName = "notification_id_sequence"
+            name = "title_id_sequence",
+            sequenceName = "title_id_sequence"
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "notification_id_sequence"
+            generator = "title_id_sequence"
     )
-    private Integer titleId;
+    private Long id;
+
+    @Column(unique = true)
     private String title;
     private String titleType;
-    private String synopsis;
-    private int rating;
     private int year;
-    private String imbdId;
+    private String platform;
+    private LocalDateTime createdAt;
 
 }
